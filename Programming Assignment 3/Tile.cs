@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Programming_Assignment_3
 {
-    class Program
+    class Tile : Entity
     {
-        static void Main(string[] args)
+
+        public void render(Renderer r)
         {
-            new Game();
+            r.drawDot(pos, c);
         }
     }
 }

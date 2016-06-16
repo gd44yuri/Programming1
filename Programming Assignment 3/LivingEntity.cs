@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming_Assignment_3
 {
-    class Program
+    class LivingEntity : Entity
     {
-        static void Main(string[] args)
-        {
-            new Game();
-        }
+
+        public int HP = 10, MHP = 10;
     }
 }
