@@ -8,8 +8,6 @@ namespace Programming_Assignment_3
 {
     class Player : LivingEntity
     {
-        Game _game;
-
         //Input listerner for player input verification
         InputListener _input;
 
@@ -64,11 +62,24 @@ namespace Programming_Assignment_3
             r.drawDot(playerPos, 'P');
         }
 
-        protected void Attack(byte dir, Vector3 pos)
+        private void Attack(byte dir, Vector3 pos)
         {
             _game.AddProjectile(new Arrow(dir, new Vector3(playerPos)));
 
             //Instantiate an arrow using the player position and direction they're facing.
+        }
+
+        public void RecoverHealth(int amount)
+        {
+            if (this.HP <= this.MHP)
+            {
+                this.HP += amount;
+            }
+
+            if (this.HP >= this.MHP)
+            {
+                this.HP = this.MHP;
+            }
         }
     }
 }

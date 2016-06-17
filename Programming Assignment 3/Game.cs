@@ -19,11 +19,14 @@ namespace Programming_Assignment_3
 
         List<Projectile> projectiles = new List<Projectile>();
 
+        List<Enemy> enemies = new List<Enemy>();
+
         public Game()
         {
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(_input, this);
+            AddEnemy(new Archer(new Vector3(15, 8), this, 3));
 
             GetDeltaTime();
             while(isRunning){
@@ -60,6 +63,11 @@ namespace Programming_Assignment_3
             {
                 p.Update();
             }
+
+            foreach (Enemy e in enemies)
+            {
+                e.Update();
+            }
         }
 
         public void Render(Renderer r)
@@ -77,6 +85,11 @@ namespace Programming_Assignment_3
             foreach (Projectile p in projectiles)
             {
                 p.Render(r);
+            }
+
+            foreach (Enemy e in enemies)
+            {
+                e.Render(r);
             }
         }
 
@@ -108,6 +121,36 @@ namespace Programming_Assignment_3
         public void DestroyProjectile(Projectile p)
         {
             p = null;
+        }
+
+        public void AddEnemy(Enemy en)
+        {
+            enemies.Add(en);
+        }
+
+        public void CheckEnemies()
+        {
+            foreach (Enemy e in enemies)
+            {
+                if (!e.isAlive)
+                {
+                    DestroyEnemy(e);
+                }
+            }
+            List<Enemy> ne = new List<Enemy>();
+            foreach (Enemy e in enemies)
+            {
+                if (e != null)
+                {
+                    ne.Add(e);
+                }
+            }
+            enemies = ne;
+        }
+
+        public void DestroyEnemy(Enemy e)
+        {
+            e = null;
         }
     }
 }
