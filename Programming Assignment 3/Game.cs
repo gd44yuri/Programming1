@@ -26,7 +26,7 @@ namespace Programming_Assignment_3
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(_input, this);
-            AddEnemy(new Archer(new Vector3(15, 8), this, 3));
+            AddEnemy(new Archer(new Vector3(15, 8), this, 1));
 
             GetDeltaTime();
             while(isRunning){

@@ -14,7 +14,7 @@ namespace Programming_Assignment_3
             this.attackPower = 2;
             _game = g;
             direction = newDir;
-            this.canAttack = true;
+            this.canAttack = false;
         }
 
         public override void Update()
@@ -23,7 +23,16 @@ namespace Programming_Assignment_3
             {
                 if (canAttack)
                 {
-                    //Attack();
+                    Task.Factory.StartNew(() =>
+                    {
+                        System.Threading.Thread.Sleep(2000);
+                        Attack();
+                        System.Threading.Thread.Sleep(2000);
+                    });
+                }
+                else
+                {
+                    canAttack = true;
                 }
             }
         }
@@ -31,6 +40,7 @@ namespace Programming_Assignment_3
         public void Attack()
         {
             _game.AddProjectile(new Arrow(direction, new Vector3(this.pos)));
+            canAttack = false;
         }
 
         public override void Render(Renderer r)
