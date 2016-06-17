@@ -15,6 +15,8 @@ namespace Programming_Assignment_3
 
         public bool solid = false;
 
+        public bool isAlive = true;
+
         public Entity(){}
 
         public Entity(Vector3 _pos)

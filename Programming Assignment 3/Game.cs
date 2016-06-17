@@ -17,11 +17,13 @@ namespace Programming_Assignment_3
 
         Level l;
 
+        List<Projectile> projectiles = new List<Projectile>();
+
         public Game()
         {
             _input = new InputListener();
             _renderer = new Renderer(this);
-            _player = new Player(_input);
+            _player = new Player(_input, this);
 
             GetDeltaTime();
             while(isRunning){
@@ -53,6 +55,11 @@ namespace Programming_Assignment_3
         public void Update()
         {
             _player.Update();
+
+            foreach (Projectile p in projectiles)
+            {
+                p.Update();
+            }
         }
 
         public void Render(Renderer r)
@@ -66,6 +73,41 @@ namespace Programming_Assignment_3
             r.drawBox(new Vector3(6, 3), new Vector3(13, 9), ' ');
 
             _player.Render(r);
+
+            foreach (Projectile p in projectiles)
+            {
+                p.Render(r);
+            }
+        }
+
+        public void AddProjectile(Projectile proj)
+        {
+            projectiles.Add(proj);
+        }
+
+        public void CheckProjectiles()
+        {
+            foreach (Projectile p in projectiles)
+            {
+                if (!p.isAlive)
+                {
+                    DestroyProjectile(p);
+                }
+            }
+            List<Projectile> np = new List<Projectile>();
+            foreach (Projectile p in projectiles) 
+            {
+                if (p != null)
+                {
+                    np.Add(p);
+                }
+            }
+            projectiles = np;
+        }
+
+        public void DestroyProjectile(Projectile p)
+        {
+            p = null;
         }
     }
 }

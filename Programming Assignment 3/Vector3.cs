@@ -21,6 +21,13 @@ namespace Programming_Assignment_3
             z = _z;
         }
 
+        public Vector3(Vector3 _pos)
+        {
+            x = _pos.x;
+            y = _pos.y;
+            z = _pos.z;
+        }
+
         public Vector3(int _x, int _y)
         {
             x = _x;
@@ -31,6 +38,13 @@ namespace Programming_Assignment_3
         {
             x += _x;
             y += _y;
+        }
+
+        public void translate(Vector3 _pos)
+        {
+            x += _pos.x;
+            y += _pos.y;
+            z += _pos.z;
         }
 
         public static float getDistance3D(Vector3 posA, Vector3 posB){

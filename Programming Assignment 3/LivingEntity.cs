@@ -8,7 +8,6 @@ namespace Programming_Assignment_3
 {
     class LivingEntity : Entity
     {
-
         public int HP = 10, MHP = 10;
     }
 }
