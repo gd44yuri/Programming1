@@ -11,25 +11,23 @@ namespace Programming_Assignment_3
         private bool isRunning = true;
 
         Renderer _renderer;
-        InputListener _input;
-
+        public static InputListener _input;
+        Player _player;
         float rTime;
 
         Level l;
 
         public Game()
         {
-
             _input = new InputListener();
             _renderer = new Renderer(this);
+            _player = new Player(_input);
 
             GetDeltaTime();
             while(isRunning){
                 GetDeltaTime();
-
                 _input.Update();
                 Update();
-
                 _renderer.Render();
                 rTime = 0;
 
@@ -51,32 +49,23 @@ namespace Programming_Assignment_3
             return dT;
         }
 
-        Vector3 p = new Vector3(4, 4);
 
         public void Update()
         {
-            if(_input.A)
-                p.translate(-1, 0);
-            if (_input.D)
-                p.translate(1, 0);
-            if (_input.W)
-                p.translate(0, -1);
-            if (_input.S)
-                p.translate(0, 1);
+            _player.Update();
         }
 
         public void Render(Renderer r)
         {
            // Console.Write((float)GetDeltaTime()/5000f + "\n");
-            r.setCameraPosition(p);
-            r.drawDot(new Vector3(4, 2), 'a');
-            r.drawDot(new Vector3(1, 2), 'p');
+            //r.setCameraPosition(p);
+            //r.drawDot(new Vector3(4, 2), 'a');
+            //r.drawDot(new Vector3(1, 2), 'p');
 
-            r.drawBox(new Vector3(5, 2), new Vector3(9, 5), 'x');
-            r.drawBox(new Vector3(6, 3), new Vector3(7, 3), ' ');
+            r.drawBox(new Vector3(5, 2), new Vector3(15, 11), 'x');
+            r.drawBox(new Vector3(6, 3), new Vector3(13, 9), ' ');
 
-
-            r.drawDot(p, 'e');
+            _player.Render(r);
         }
     }
 }

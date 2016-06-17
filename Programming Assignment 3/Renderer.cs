@@ -82,7 +82,7 @@ namespace Programming_Assignment_3
         //Changes the camera position. currently commented out due to the renderer being buggy
         public void setCameraPosition(Vector3 pos)
         {
-            //camPos = new Vector3((int)pos.x - (int)(RenderSize.x * .5f), (int)pos.y - (int)(RenderSize.y * .5f));
+            camPos = new Vector3((int)pos.x - (int)(RenderSize.x * .5f), (int)pos.y - (int)(RenderSize.y * .5f));
         }
     }
 }

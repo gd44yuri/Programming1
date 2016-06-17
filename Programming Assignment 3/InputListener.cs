@@ -9,7 +9,7 @@ namespace Programming_Assignment_3
     class InputListener
     {
 
-        public bool W, A, S, D, UP, DOWN, LEFT, RIGHT;
+        public bool W, A, S, D, UP, DOWN, LEFT, RIGHT, SPACE;
 
         public void Update(){
 
@@ -21,6 +21,7 @@ namespace Programming_Assignment_3
             DOWN = false;
             LEFT = false;
             RIGHT = false;
+            SPACE = false;
 
             while (Console.KeyAvailable)
             {
@@ -49,6 +50,9 @@ namespace Programming_Assignment_3
 
                 if (kc == ConsoleKey.RightArrow)
                     RIGHT = true;
+
+                if (kc == ConsoleKey.Spacebar)
+                    SPACE = true;
 
                 Console.Clear();
             }
