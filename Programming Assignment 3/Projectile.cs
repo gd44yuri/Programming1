@@ -10,11 +10,6 @@ namespace Programming_Assignment_3
     {
         public byte direction;
 
-        public void Move(Vector3 movement)
-        {
-            pos.translate(movement);
-        }
-
         public virtual void Update()
         {
         }

@@ -15,7 +15,7 @@ namespace Programming_Assignment_3
         Player _player;
         float rTime;
 
-        Level l;
+        public Level _level;
 
         List<Projectile> projectiles = new List<Projectile>();
 
@@ -26,6 +26,10 @@ namespace Programming_Assignment_3
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(_input, this);
+            _player.pos = new Vector3(4, 4);
+
+            LoadLevel();
+
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
 
             GetDeltaTime();
@@ -42,7 +46,7 @@ namespace Programming_Assignment_3
 
         public void LoadLevel()
         {
-            //l = new Level(128, 128, );
+            _level = new Level(128, 128);
         }
 
         static long lastTime = 0;
@@ -59,6 +63,8 @@ namespace Programming_Assignment_3
         {
             _player.Update();
 
+            CheckProjectiles();
+
             foreach (Projectile p in projectiles)
             {
                 p.Update();
@@ -72,15 +78,10 @@ namespace Programming_Assignment_3
 
         public void Render(Renderer r)
         {
-           // Console.Write((float)GetDeltaTime()/5000f + "\n");
-            //r.setCameraPosition(p);
-            //r.drawDot(new Vector3(4, 2), 'a');
-            //r.drawDot(new Vector3(1, 2), 'p');
-
-            r.drawBox(new Vector3(5, 2), new Vector3(15, 11), 'x');
-            r.drawBox(new Vector3(6, 3), new Vector3(13, 9), ' ');
+            _level.Render(r);
 
             _player.Render(r);
+            
 
             foreach (Projectile p in projectiles)
             {
@@ -96,6 +97,7 @@ namespace Programming_Assignment_3
         public void AddProjectile(Projectile proj)
         {
             projectiles.Add(proj);
+            proj._game = this;
         }
 
         public void CheckProjectiles()

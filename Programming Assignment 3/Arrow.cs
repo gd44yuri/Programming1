@@ -50,6 +50,11 @@ namespace Programming_Assignment_3
             }
         }
 
+        public override void OnCollision()
+        {
+            isAlive = false;
+        }
+
         public override void Render(Renderer r)
         {
             switch (direction)
