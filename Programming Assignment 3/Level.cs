@@ -33,6 +33,9 @@ namespace Programming_Assignment_3
             drawBox(new Vector3(5, 2), new Vector3(15, 11), true, 'x');
             drawBox(new Vector3(6, 3), new Vector3(13, 9), false, ' ');
             drawDot(new Vector3(5, 5), false, ' ');
+
+            
+
         }
 
         public void Render(Renderer r)
