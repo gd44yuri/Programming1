@@ -17,9 +17,9 @@ namespace Programming_Assignment_3
 
         public Level _level;
 
-        List<Projectile> projectiles = new List<Projectile>();
+        public List<Projectile> projectiles = new List<Projectile>();
 
-        List<Enemy> enemies = new List<Enemy>();
+        public List<Enemy> enemies = new List<Enemy>();
 
         public Game()
         {
@@ -34,6 +34,7 @@ namespace Programming_Assignment_3
 
             GetDeltaTime();
             while(isRunning){
+
                 GetDeltaTime();
                 _input.Update();
                 Update();
@@ -67,6 +68,7 @@ namespace Programming_Assignment_3
 
             foreach (Projectile p in projectiles)
             {
+                if(p!=null)
                 p.Update();
             }
 
@@ -81,7 +83,8 @@ namespace Programming_Assignment_3
             _level.Render(r);
 
             _player.Render(r);
-            
+
+            CheckProjectiles();
 
             foreach (Projectile p in projectiles)
             {
@@ -102,22 +105,19 @@ namespace Programming_Assignment_3
 
         public void CheckProjectiles()
         {
-            foreach (Projectile p in projectiles)
-            {
-                if (!p.isAlive)
-                {
-                    DestroyProjectile(p);
-                }
-            }
+           
             List<Projectile> np = new List<Projectile>();
             foreach (Projectile p in projectiles) 
             {
-                if (p != null)
+                if (p.isAlive)
                 {
                     np.Add(p);
                 }
             }
+
             projectiles = np;
+
+            GC.Collect();
         }
 
         public void DestroyProjectile(Projectile p)

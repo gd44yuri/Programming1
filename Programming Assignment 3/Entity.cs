@@ -24,6 +24,8 @@ namespace Programming_Assignment_3
             _game = game;
         }
 
+         ~Entity() { }
+
         public Entity(Vector3 _pos)
         {
             pos = _pos;

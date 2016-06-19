@@ -53,6 +53,7 @@ namespace Programming_Assignment_3
         public override void OnCollision()
         {
             isAlive = false;
+           // _game.projectiles.Remove(this);
         }
 
         public override void Render(Renderer r)
