@@ -17,12 +17,16 @@ namespace Programming_Assignment_3
         //Player's position
        // Vector3 playerPos = new Vector3(12, 10);
 
+        //Player class constructor where we receive the input listener and the game class reference.
         public Player(InputListener il, Game g)
         {
             _input = il;
             _game = g;
         }
 
+        /// <summary>
+        /// Update method to handle player's input and update its position accordingly.
+        /// </summary>
         public void Update()
         {
             if (_input.W)
@@ -55,20 +59,31 @@ namespace Programming_Assignment_3
             }
         }
 
+        /// <summary>
+        /// Method responsible for rendering the player on console.
+        /// </summary>
+        /// <param name="r">Render reference</param>
         public void Render(Renderer r)
         {
             // Console.Write((float)GetDeltaTime()/5000f + "\n");
             r.setCameraPosition(pos);
             r.drawDot(pos, 'P');
         }
-
+        
+        /// <summary>
+        /// Method responsible for the player's attack. It instantiate an arrow and gives it the direction and the point of origin.
+        /// </summary>
+        /// <param name="dir">The direction the player is facing.</param>
+        /// <param name="pos">The current position for the player.</param>
         private void Attack(byte dir, Vector3 pos)
         {
             _game.AddProjectile(new Arrow(dir, new Vector3(pos), 'P', this.attackPower));
-
-            //Instantiate an arrow using the player position and direction they're facing.
         }
 
+        /// <summary>
+        /// Method that recovers player's health by a certain amount.
+        /// </summary>
+        /// <param name="amount">The amount that the player will recover.</param>
         public void RecoverHealth(int amount)
         {
             if (this.HP <= this.MHP)
@@ -82,6 +97,9 @@ namespace Programming_Assignment_3
             }
         }
 
+        /// <summary>
+        /// Method called when the player's health reaches 0 or below.
+        /// </summary>
         public override void OnDeath()
         {
             _game.GameOver();

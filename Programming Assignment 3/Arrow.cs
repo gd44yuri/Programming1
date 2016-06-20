@@ -8,13 +8,22 @@ namespace Programming_Assignment_3
 {
     class Arrow : Projectile
     {
+        //Symbols for the arrows
         protected char rightArrow = '→';
         protected char leftArrow = '←';
         protected char upArrow = '↑';
         protected char downArrow = '↓';
 
+        //Boolean to control the update loop
         bool isUpdate = false;
 
+        /// <summary>
+        /// Arrow Constructor.
+        /// </summary>
+        /// <param name="dir">The direction the arrow will travel</param>
+        /// <param name="pos">Initial position</param>
+        /// <param name="own">What entity is shooting the arrow</param>
+        /// <param name="pow">How much damage will the arrow cause</param>
         public Arrow(byte dir, Vector3 pos, char own, int pow)
         {
             direction = dir;
@@ -23,6 +32,9 @@ namespace Programming_Assignment_3
             power = pow;
         }
 
+        /// <summary>
+        /// Update method to make the arrow move in the screen according to its direction
+        /// </summary>
         public override void Update()
         {
             if (isUpdate)
@@ -52,12 +64,19 @@ namespace Programming_Assignment_3
             }
         }
 
+        /// <summary>
+        /// Method called when the arrow collides with something to destroy it.
+        /// </summary>
         public override void OnCollision()
         {
             isAlive = false;
            // _game.projectiles.Remove(this);
         }
 
+        /// <summary>
+        /// Render method to draw the correct arrow on the screen.
+        /// </summary>
+        /// <param name="r">Render reference</param>
         public override void Render(Renderer r)
         {
             switch (direction)

@@ -9,12 +9,12 @@ namespace Programming_Assignment_3
 {
     class Game
     {
-        private bool isRunning = true;
+        public bool isRunning = false;
 
         Renderer _renderer;
         public static InputListener _input;
         Player _player;
-        float rTime;
+        float rTime; 
 
         public Level _level;
 
@@ -24,6 +24,8 @@ namespace Programming_Assignment_3
 
         public Game()
         {
+            ShowTitle();
+
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(_input, this);
@@ -196,11 +198,14 @@ namespace Programming_Assignment_3
             enemies.Remove(e);
         }
 
+        public void ShowTitle() {
+            Console.Clear();
+            TitleScreen ts = new TitleScreen(this);
+        }
+
         public void GameOver() 
         {
             isRunning = false;
-            Console.Clear();
-            TitleScreen ts = new TitleScreen();
         }
 
         public void UpdateEnemyDireciton()
