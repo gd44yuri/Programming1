@@ -15,11 +15,12 @@ namespace Programming_Assignment_3
 
         bool isUpdate = false;
 
-        public Arrow(byte dir, Vector3 pos, char own)
+        public Arrow(byte dir, Vector3 pos, char own, int pow)
         {
             direction = dir;
             this.pos = pos;
             owner = own;
+            power = pow;
         }
 
         public override void Update()

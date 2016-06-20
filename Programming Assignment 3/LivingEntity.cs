@@ -17,7 +17,6 @@ namespace Programming_Assignment_3
             this.HP -= amount;
             if (this.HP <= 0)
             {
-                Debug.WriteLine(this.isAlive);
                 OnDeath();
             }
             else
@@ -31,7 +30,7 @@ namespace Programming_Assignment_3
             
         }
 
-        public void OnDeath()
+        public virtual void OnDeath()
         {
             isAlive = false;
         }

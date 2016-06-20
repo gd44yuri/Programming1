@@ -32,9 +32,7 @@ namespace Programming_Assignment_3
             LoadLevel();
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
-
-           
-
+            AddEnemy(new Archer(new Vector3(15, 4), this, 3));
             
             //GetDeltaTime();
             while(isRunning){
@@ -73,6 +71,8 @@ namespace Programming_Assignment_3
             CheckEnemies();
 
             CheckProjectilesForCollision();
+
+            UpdateEnemyDireciton();
 
             foreach (Projectile p in projectiles.Reverse<Projectile>())
             {
@@ -156,6 +156,15 @@ namespace Programming_Assignment_3
                         }
                     }
                 }
+                else if (p.owner == 'E')
+                {
+                    if (p.pos.x == _player.pos.x && p.pos.y == _player.pos.y)
+                    {
+                        _player.TakeDamage(p.power);
+                        DestroyProjectile(p);
+                        Debug.WriteLine("Health: " + _player.HP);
+                    }
+                }
             }
         }
 
@@ -185,6 +194,36 @@ namespace Programming_Assignment_3
             e.isAlive = false;
             e.canAttack = false;
             enemies.Remove(e);
+        }
+
+        public void GameOver() 
+        {
+            isRunning = false;
+            Console.Clear();
+            TitleScreen ts = new TitleScreen();
+        }
+
+        public void UpdateEnemyDireciton()
+        {
+            foreach (Enemy e in enemies)
+            {
+                if (_player.pos.x < e.pos.x) //Player is at the left of the enemy.
+                {
+                    e.direction = 3;
+                }
+                else if (_player.pos.x > e.pos.x)
+                {
+                    e.direction = 1;
+                }
+                else if (_player.pos.y < e.pos.y) //Player is above of the enemy.
+                {
+                    e.direction = 0;
+                }
+                else if (_player.pos.y > e.pos.y)
+                {
+                    e.direction = 2;
+                }
+            }
         }
     }
 }
