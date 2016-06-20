@@ -8,6 +8,8 @@ namespace Programming_Assignment_3
 {
     class GameOver
     {
+
+        public GameOver(){
             Console.WriteLine("           ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ");
             Console.WriteLine("          █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░█  ");
             Console.WriteLine("         █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░█  ");
@@ -31,5 +33,6 @@ namespace Programming_Assignment_3
             
 
             Console.ReadLine();
+        }
     }
 }
