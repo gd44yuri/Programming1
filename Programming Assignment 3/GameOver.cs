@@ -8,6 +8,28 @@ namespace Programming_Assignment_3
 {
     class GameOver
     {
+            Console.WriteLine("           ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ");
+            Console.WriteLine("          █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░█  ");
+            Console.WriteLine("         █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░█  ");
+            Console.WriteLine("        █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░█  ");
+            Console.WriteLine("       █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░█   ");
+            Console.WriteLine("      █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░▄▄▄▄░░▄▄░░▄░░░▄░▄▄▄▄░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░█░▄▄░█▄▄█░█▀▄▀█░█■■░░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░█▄▄█░█░░█░█░░░█░█▄▄▄░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░░▄▄▄░░▄░░░▄░▄▄▄▄░▄▄▄░░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░█░░░█░█░░░█░█■■░░█░░█░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░▀▄▄▄▀░░▀▄▀░░█▄▄▄░█▀▀▄░░░█  ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█     ");
+            Console.WriteLine("     █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█     ");
+            Console.WriteLine("▓    █▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█    ▓");
+            Console.WriteLine("▓▓   █▓▓▒▒▓░░░░░░░░░░░░░▓░░░░░░░░░░▓░░░░█   ▓▓");
+            Console.WriteLine("▓▓▓  █▓▓▒▓▓░░░░░░▓░░░░░░▓▓░░░░░▓░░▓▓▓░░░█  ▓▓▓ ");
+            Console.WriteLine("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ");
+            
 
+            Console.ReadLine();
     }
 }
