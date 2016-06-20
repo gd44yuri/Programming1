@@ -36,6 +36,7 @@ namespace Programming_Assignment_3
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
+            //AddEnemy(new Soldier(new Vector3(12, 7), this, 3));
             
             //GetDeltaTime();
             while(isRunning){
@@ -250,7 +251,7 @@ namespace Programming_Assignment_3
             if (allEnemiesDead)
             {
                 Console.Clear();
-                GameOver go = new GameOver();
+                GameClear gc = new GameClear();
             }
         }
     }
