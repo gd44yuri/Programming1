@@ -249,6 +249,7 @@ namespace Programming_Assignment_3
 
             if (allEnemiesDead)
             {
+                Console.Clear();
                 GameOver go = new GameOver();
             }
         }
