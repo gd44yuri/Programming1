@@ -8,7 +8,13 @@ namespace Programming_Assignment_3
 {
     class TitleScreen
     {
+        //Game class reference
         Game _game;
+
+        /// <summary>
+        /// Constructor for the Title Screen
+        /// </summary>
+        /// <param name="g">Game class reference</param>
         public TitleScreen(Game g)
         {
             _game = g;
@@ -38,6 +44,7 @@ namespace Programming_Assignment_3
 
             Console.ReadLine();
 
+            //Changes the boolean isRunning to start the game
             _game.isRunning = true;
         }
     }

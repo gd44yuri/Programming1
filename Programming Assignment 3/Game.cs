@@ -14,7 +14,7 @@ namespace Programming_Assignment_3
         Renderer _renderer;
         public static InputListener _input;
         Player _player;
-        float rTime;
+        float rTime; 
 
         public Level _level;
 
