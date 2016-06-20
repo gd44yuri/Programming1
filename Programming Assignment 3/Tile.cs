@@ -35,6 +35,12 @@ namespace Programming_Assignment_3
             solid = solidity;
         }
 
+        public void set(char type, bool solidity)
+        {
+            c = type;
+            solid = solidity;
+        }
+
         public void setPosition(Vector3 _pos)
         {
             pos = _pos;

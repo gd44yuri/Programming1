@@ -37,8 +37,6 @@ namespace Programming_Assignment_3
             {
                 Console.WriteLine(str);
             }
-
-            Console.ReadLine();
         }
 
         public void Write(String _name, List<string> _strings)
@@ -52,9 +50,6 @@ namespace Programming_Assignment_3
             }
 
             writer.Close();
-
-            Console.WriteLine(winDir);
-            Console.ReadLine();
         }
     }
 }

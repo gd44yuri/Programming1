@@ -27,15 +27,95 @@ namespace Programming_Assignment_3
                     t[x, y] = new Tile(new Vector3(x, y));
                 }
             }
-
-
-
+            
+            //make level
             drawBox(new Vector3(5, 2), new Vector3(15, 11), true, 'x');
             drawBox(new Vector3(6, 3), new Vector3(13, 9), false, ' ');
             drawDot(new Vector3(5, 5), false, ' ');
 
-            
+            saveLevel();
 
+            //load();
+
+        }
+
+        public void setLevel(int _sx, int _sy)
+        {
+            sx = _sx;
+            sy = _sy;
+
+            t = new Tile[sx, sy];
+
+            for (int y = 0; y < sy; y++)
+            {
+                for (int x = 0; x < sx; x++)
+                {
+                    t[x, y] = new Tile(new Vector3(x, y));
+                }
+            }
+        }
+
+        public void load()
+        {
+            
+            FileIO fio = new FileIO();
+            fio.Read("Level_test");
+            List<string> strs = fio.strings;
+
+
+            int i = 0;
+            foreach(string word in strs[0].Split(' ')){
+                if(i == 0)
+                    int.TryParse(word, out sx);
+                if(i == 1)
+                    int.TryParse(word, out sy);
+
+                i++;
+            }
+
+            strs.RemoveAt(0);
+            
+            foreach(string s in strs){
+                int x = 0, y = 0;
+                foreach(string word in s.Split(' ')){
+                    if(word[0] != '♂')
+                        t[x, y].set(word[0], (word[0] != '♂'));
+                    else
+                        t[x, y].set(' ', (word[0] != '♂'));
+                    x++;
+                }
+                y++;
+            }
+
+
+
+            for (int y = 0; y < sy; y++){
+                for (int x = 0; x < sx; x++){
+                    
+                   // drawDot(new Vector3(x, y), (), char c);
+                }
+            }
+
+        }
+
+        public void saveLevel()
+        {
+            List<string> strs = new List<string>();
+
+            strs.Add(sx + " " + sy);
+
+            for (int y = 0; y < sy; y++)
+            {
+                String str = "";
+                for (int x = 0; x < sx; x++)
+                {
+                    str += t[x, y].c;
+                }
+                strs.Add(str);
+            }
+
+            FileIO fio = new FileIO();
+            fio.Write("Level_test", strs);
         }
 
         public void Render(Renderer r)
