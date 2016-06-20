@@ -29,13 +29,13 @@ namespace Programming_Assignment_3
             }
             
             //make level
-            drawBox(new Vector3(5, 2), new Vector3(15, 11), true, 'x');
-            drawBox(new Vector3(6, 3), new Vector3(13, 9), false, ' ');
-            drawDot(new Vector3(5, 5), false, ' ');
+            //drawBox(new Vector3(5, 2), new Vector3(15, 11), true, 'x');
+            //drawBox(new Vector3(6, 3), new Vector3(13, 9), false, ' ');
+            //drawDot(new Vector3(5, 5), false, ' ');
 
-            saveLevel();
+            //saveLevel();
 
-            //load();
+            load();
 
         }
 
@@ -73,28 +73,26 @@ namespace Programming_Assignment_3
                 i++;
             }
 
+            setLevel(sx, sy);
+
             strs.RemoveAt(0);
+
+            int _y = 0;
             
             foreach(string s in strs){
-                int x = 0, y = 0;
-                foreach(string word in s.Split(' ')){
-                    if(word[0] != '♂')
-                        t[x, y].set(word[0], (word[0] != '♂'));
-                    else
-                        t[x, y].set(' ', (word[0] != '♂'));
-                    x++;
+
+                for (int x = 0; x < s.Length; x++)
+                {
+                    drawDot(new Vector3(x, _y), (s[x] != ' '), (char)s[x]);
                 }
-                y++;
+                //Console.WriteLine(str);
+                _y++;
             }
 
+            
+            //Console.Read();
 
 
-            for (int y = 0; y < sy; y++){
-                for (int x = 0; x < sx; x++){
-                    
-                   // drawDot(new Vector3(x, y), (), char c);
-                }
-            }
 
         }
 
@@ -131,8 +129,7 @@ namespace Programming_Assignment_3
 
         public void setTileAtPos(Vector3 _pos, bool solid, char c)
         {
-            t[(int)_pos.x, (int)_pos.y].c = c;
-            t[(int)_pos.x, (int)_pos.y].solid = solid;
+            t[(int)_pos.x, (int)_pos.y].set(c, solid);
         }
 
         //!!only run level draw methods in the constructor!!

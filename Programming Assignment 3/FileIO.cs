@@ -26,16 +26,11 @@ namespace Programming_Assignment_3
             }
             catch
             {
-                strings.Add("There is nothing in this file.");
+                
             }
             finally
             {
                 reader.Close();
-            }
-
-            foreach (string str in strings)
-            {
-                Console.WriteLine(str);
             }
         }
 

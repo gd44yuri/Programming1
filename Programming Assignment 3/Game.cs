@@ -52,7 +52,7 @@ namespace Programming_Assignment_3
 
         public void LoadLevel()
         {
-            _level = new Level(128, 128);
+            _level = new Level(32, 32);
         }
 
         static long lastTime = 0;
