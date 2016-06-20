@@ -22,7 +22,6 @@ namespace Programming_Assignment_3
         {
             if (isAlive)
             {
-                Debug.WriteLine(isAlive);
                 if (this.canAttack)
                 {
                     Task.Factory.StartNew(() =>
@@ -53,7 +52,7 @@ namespace Programming_Assignment_3
 
         public void Attack()
         {
-            _game.AddProjectile(new Arrow(direction, new Vector3(this.pos), 'E'));
+            _game.AddProjectile(new Arrow(direction, new Vector3(this.pos), 'E', this.attackPower));
             this.canAttack = false;
         }
 

@@ -10,6 +10,7 @@ namespace Programming_Assignment_3
     {
         public byte direction;
         public char owner;
+        public int power;
 
         public virtual void Update()
         {
