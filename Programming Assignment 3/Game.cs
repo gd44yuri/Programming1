@@ -14,7 +14,7 @@ namespace Programming_Assignment_3
 
         Renderer _renderer;
         public static InputListener _input;
-        Player _player;
+        public Player _player;
         float rTime; 
 
         public Level _level;
@@ -36,7 +36,7 @@ namespace Programming_Assignment_3
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
-            //AddEnemy(new Soldier(new Vector3(12, 7), this, 3));
+            AddEnemy(new Soldier(new Vector3(12, 7), this, 3));
             
             //GetDeltaTime();
             while(isRunning){
@@ -239,12 +239,10 @@ namespace Programming_Assignment_3
 
         public void CheckClearConditions()
         {
-            foreach (Enemy e in enemies)
+            Debug.WriteLine(enemies.Count);
+
+            if (enemies.Count == 0)
             {
-                if (e.isAlive)
-                {
-                    break;
-                }
                 allEnemiesDead = true;
             }
 
