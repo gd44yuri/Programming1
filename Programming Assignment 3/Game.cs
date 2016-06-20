@@ -10,6 +10,7 @@ namespace Programming_Assignment_3
     class Game
     {
         public bool isRunning = false;
+        public bool allEnemiesDead = false;
 
         Renderer _renderer;
         public static InputListener _input;
@@ -75,6 +76,8 @@ namespace Programming_Assignment_3
             CheckProjectilesForCollision();
 
             UpdateEnemyDireciton();
+
+            CheckClearConditions();
 
             foreach (Projectile p in projectiles.Reverse<Projectile>())
             {
@@ -205,7 +208,9 @@ namespace Programming_Assignment_3
 
         public void GameOver() 
         {
+            Console.Clear();
             isRunning = false;
+            GameOver go = new GameOver();
         }
 
         public void UpdateEnemyDireciton()
@@ -228,6 +233,23 @@ namespace Programming_Assignment_3
                 {
                     e.direction = 2;
                 }
+            }
+        }
+
+        public void CheckClearConditions()
+        {
+            foreach (Enemy e in enemies)
+            {
+                if (e.isAlive)
+                {
+                    break;
+                }
+                allEnemiesDead = true;
+            }
+
+            if (allEnemiesDead)
+            {
+                GameOver go = new GameOver();
             }
         }
     }
