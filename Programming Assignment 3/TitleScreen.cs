@@ -8,8 +8,7 @@ namespace Programming_Assignment_3
 {
     class TitleScreen
     {
-        static void Main(string[] args)
-        {
+        public TitleScreen(){
             Console.WriteLine("\\\\\\\\                             █■▄");
             Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■████■");
             Console.WriteLine("////                             █■▀");
