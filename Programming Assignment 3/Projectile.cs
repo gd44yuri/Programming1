@@ -9,6 +9,7 @@ namespace Programming_Assignment_3
     class Projectile : Entity
     {
         public byte direction;
+        public char owner;
 
         public virtual void Update()
         {

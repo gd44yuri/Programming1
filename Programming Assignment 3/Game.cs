@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Programming_Assignment_3
 {
@@ -66,7 +67,11 @@ namespace Programming_Assignment_3
 
             CheckProjectiles();
 
-            foreach (Projectile p in projectiles)
+            CheckEnemies();
+
+            CheckProjectilesForCollision();
+
+            foreach (Projectile p in projectiles.Reverse<Projectile>())
             {
                 if(p!=null)
                 p.Update();
@@ -86,7 +91,9 @@ namespace Programming_Assignment_3
 
             CheckProjectiles();
 
-            foreach (Projectile p in projectiles)
+            CheckEnemies();
+
+            foreach (Projectile p in projectiles.Reverse<Projectile>())
             {
                 p.Render(r);
             }
@@ -105,13 +112,15 @@ namespace Programming_Assignment_3
 
         public void CheckProjectiles()
         {
-           
             List<Projectile> np = new List<Projectile>();
-            foreach (Projectile p in projectiles) 
+            foreach (Projectile p in projectiles.Reverse<Projectile>()) 
             {
-                if (p.isAlive)
+                if (p != null)
                 {
-                    np.Add(p);
+                    if (p.isAlive)
+                    {
+                        np.Add(p);
+                    }
                 }
             }
 
@@ -122,7 +131,29 @@ namespace Programming_Assignment_3
 
         public void DestroyProjectile(Projectile p)
         {
-            p = null;
+            p.isAlive = false;
+            projectiles.Remove(p);
+        }
+
+        public void CheckProjectilesForCollision()
+        {
+            List<Projectile> np = new List<Projectile>();
+            np = projectiles;
+            foreach (Projectile p in np.Reverse<Projectile>())
+            {
+                if (p.owner == 'P')
+                {
+                    foreach (Enemy e in enemies.Reverse<Enemy>())
+                    {
+                        if (p.pos.x == e.pos.x && p.pos.y == e.pos.y)
+                        {
+                            
+                            e.TakeDamage(_player.attackPower);
+                            DestroyProjectile(p);
+                        }
+                    }
+                }
+            }
         }
 
         public void AddEnemy(Enemy en)
@@ -132,19 +163,15 @@ namespace Programming_Assignment_3
 
         public void CheckEnemies()
         {
-            foreach (Enemy e in enemies)
-            {
-                if (!e.isAlive)
-                {
-                    DestroyEnemy(e);
-                }
-            }
             List<Enemy> ne = new List<Enemy>();
             foreach (Enemy e in enemies)
             {
                 if (e != null)
                 {
-                    ne.Add(e);
+                    if (e.isAlive)
+                    {
+                        ne.Add(e);
+                    }
                 }
             }
             enemies = ne;
@@ -152,7 +179,9 @@ namespace Programming_Assignment_3
 
         public void DestroyEnemy(Enemy e)
         {
-            e = null;
+            e.isAlive = false;
+            e.canAttack = false;
+            enemies.Remove(e);
         }
     }
 }

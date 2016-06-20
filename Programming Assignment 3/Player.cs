@@ -64,7 +64,7 @@ namespace Programming_Assignment_3
 
         private void Attack(byte dir, Vector3 pos)
         {
-            _game.AddProjectile(new Arrow(dir, new Vector3(pos)));
+            _game.AddProjectile(new Arrow(dir, new Vector3(pos), 'P'));
 
             //Instantiate an arrow using the player position and direction they're facing.
         }

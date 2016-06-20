@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Programming_Assignment_3
 {
@@ -21,26 +22,39 @@ namespace Programming_Assignment_3
         {
             if (isAlive)
             {
-                if (canAttack)
+                Debug.WriteLine(isAlive);
+                if (this.canAttack)
                 {
                     Task.Factory.StartNew(() =>
                     {
-                        System.Threading.Thread.Sleep(2000);
-                        Attack();
-                        System.Threading.Thread.Sleep(2000);
+                        while (isAlive)
+                        {
+                            if (!isAlive)
+                            {
+                                break;
+                            }
+                            System.Threading.Thread.Sleep(2000);
+                            Attack();
+                            System.Threading.Thread.Sleep(2000);
+                        }
+
                     });
                 }
                 else
                 {
-                    canAttack = true;
+                    this.canAttack = true;
                 }
+            }
+            else
+            {
+                this.canAttack = false;
             }
         }
 
         public void Attack()
         {
-            _game.AddProjectile(new Arrow(direction, new Vector3(this.pos)));
-            canAttack = false;
+            _game.AddProjectile(new Arrow(direction, new Vector3(this.pos), 'E'));
+            this.canAttack = false;
         }
 
         public override void Render(Renderer r)

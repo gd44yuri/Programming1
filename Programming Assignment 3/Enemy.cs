@@ -8,7 +8,6 @@ namespace Programming_Assignment_3
 {
     class Enemy : LivingEntity
     {
-        public int attackPower;
         public bool canAttack;
 
         //Direction the enemy is facing
