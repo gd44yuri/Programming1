@@ -33,7 +33,21 @@ namespace Programming_Assignment_3
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
 
-            GetDeltaTime();
+            FileIO fio = new FileIO();
+
+            List<string> f = new List<string>();
+            f.Add("yee");
+            f.Add("yee2");
+            f.Add("yee16");
+            f.Add("yee3");
+
+            fio.Write("asfas", f);
+
+
+            fio.Read("asfas");
+
+            /*
+            //GetDeltaTime();
             while(isRunning){
 
                 GetDeltaTime();
@@ -43,7 +57,7 @@ namespace Programming_Assignment_3
                 rTime = 0;
 
                 System.Threading.Thread.Sleep(50);
-            }
+            }*/
         }
 
         public void LoadLevel()
