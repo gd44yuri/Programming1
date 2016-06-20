@@ -8,7 +8,10 @@ namespace Programming_Assignment_3
 {
     class TitleScreen
     {
-        public TitleScreen(){
+        Game _game;
+        public TitleScreen(Game g)
+        {
+            _game = g;
             Console.WriteLine("\\\\\\\\                             █■▄");
             Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■████■");
             Console.WriteLine("////                             █■▀");
@@ -31,7 +34,11 @@ namespace Programming_Assignment_3
             Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■████■");
             Console.WriteLine("////                             █■▀");
 
+            Console.WriteLine("PRESS ENTER TO BEGIN");
+
             Console.ReadLine();
+
+            _game.isRunning = true;
         }
     }
 }
