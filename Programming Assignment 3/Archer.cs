@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Diagnostics;
 
 namespace Programming_Assignment_3
@@ -25,7 +26,7 @@ namespace Programming_Assignment_3
             direction = newDir;
 
             //Controlling the ability to attack of this enemy.
-            this.canAttack = false;
+            canAttack = false;
         }
 
         /// <summary>
@@ -35,35 +36,17 @@ namespace Programming_Assignment_3
         {
             if (isAlive)
             {
-                if (this.canAttack)
+                AllowAttack();
+                if (canAttack)
                 {
-                    //Create a new task here to enable the use of thread.sleep and prevent attack spam.
-                    Task.Factory.StartNew(() =>
-                    {
-                        while (isAlive)
-                        {
-                            //Kills the task if the enemy is not alive anymore.
-                            if (!isAlive)
-                            {
-                                break;
-                            }
-                            System.Threading.Thread.Sleep(2000);
-                            Attack();
-                            System.Threading.Thread.Sleep(2500);
-                        }
-
-                    });
-                }
-                //Making sure the enemy can attack while they're alive.
-                else
-                {
-                    this.canAttack = true;
+                    Attack();
+                    canAttack = false;
                 }
             }
             //If the enemy is dead, change the canAttack variable.
             else
             {
-                this.canAttack = false;
+                canAttack = false;
             }
         }
 
@@ -73,7 +56,7 @@ namespace Programming_Assignment_3
         public void Attack()
         {
             _game.AddProjectile(new Arrow(direction, new Vector3(this.pos), 'E', this.attackPower));
-            this.canAttack = false;
+            canAttack = false;
         }
 
         /// <summary>
@@ -83,6 +66,20 @@ namespace Programming_Assignment_3
         public override void Render(Renderer r)
         {
             r.drawDot(this.pos, 'A');
+        }
+
+        /// <summary>
+        /// Method to control the time interval in which archers attack.
+        /// </summary>
+        private void AllowAttack()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                canAttack = true;
+                System.Threading.Thread.Sleep(2000);
+                canAttack = false;
+
+            });
         }
     }
 }

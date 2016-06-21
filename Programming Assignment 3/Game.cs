@@ -10,10 +10,11 @@ namespace Programming_Assignment_3
     class Game
     {
         public bool isRunning = false;
+        public bool allEnemiesDead = false;
 
         Renderer _renderer;
         public static InputListener _input;
-        Player _player;
+        public Player _player;
         float rTime; 
 
         public Level _level;
@@ -35,6 +36,7 @@ namespace Programming_Assignment_3
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
+            AddEnemy(new Soldier(new Vector3(12, 7), this, 3));
             
             //GetDeltaTime();
             while(isRunning){
@@ -75,6 +77,8 @@ namespace Programming_Assignment_3
             CheckProjectilesForCollision();
 
             UpdateEnemyDireciton();
+
+            CheckClearConditions();
 
             foreach (Projectile p in projectiles.Reverse<Projectile>())
             {
@@ -205,7 +209,9 @@ namespace Programming_Assignment_3
 
         public void GameOver() 
         {
+            Console.Clear();
             isRunning = false;
+            GameOver go = new GameOver();
         }
 
         public void UpdateEnemyDireciton()
@@ -228,6 +234,22 @@ namespace Programming_Assignment_3
                 {
                     e.direction = 2;
                 }
+            }
+        }
+
+        public void CheckClearConditions()
+        {
+            Debug.WriteLine(enemies.Count);
+
+            if (enemies.Count == 0)
+            {
+                allEnemiesDead = true;
+            }
+
+            if (allEnemiesDead)
+            {
+                Console.Clear();
+                GameClear gc = new GameClear();
             }
         }
     }
