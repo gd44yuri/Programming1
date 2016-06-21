@@ -30,13 +30,13 @@ namespace Programming_Assignment_3
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(_input, this);
-            _player.pos = new Vector3(4, 4);
+            _player.pos = new Vector3(6, 4);
 
             LoadLevel();
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
-            AddEnemy(new Soldier(new Vector3(12, 7), this, 3));
+            AddEnemy(new Soldier(new Vector3(12, 15), this, 3));
             
             //GetDeltaTime();
             while(isRunning){
