@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 
 namespace Programming_Assignment_3
 {
+    //Base class for all entities in the game.
     class Entity
     {
+        //Char representing a wall.
         public char c = 'x';
 
+        //Vector3 to store an entity's position
         public Vector3 pos = new Vector3();
 
+        //Boolean to check if the Entity is solid
         public bool solid = false;
 
+        //Boolean to check if the Entity is alive 
         public bool isAlive = true;
 
+        //Reference to the game class
         public Game _game;
 
         public Entity() { }
@@ -41,6 +47,7 @@ namespace Programming_Assignment_3
 
         //}
 
+        //Move the Entity inside the level bounds if there's no wall where the Entity is going and checks for collision if there's a wall
         public void Move(Vector3 _move)
         {
             if (_game != null && pos.x + _move.x >= 0 && pos.x + _move.x < _game._level.sx && pos.y + _move.y >= 0 && pos.y + _move.y < _game._level.sy)
@@ -56,6 +63,9 @@ namespace Programming_Assignment_3
 
         }
 
+        /// <summary>
+        /// Base Method for Collision Checking
+        /// </summary>
         public virtual void OnCollision()
         {
 
