@@ -53,10 +53,18 @@ namespace Programming_Assignment_3
                 direction = 3;
             }
 
-            if (_input.SPACE)
-            {
-                Attack(direction, pos);
-            }
+            if (_input.UP)
+                Attack(0, pos);
+
+            if (_input.RIGHT)
+                Attack(1, pos);
+
+            if (_input.DOWN)
+                Attack(2, pos);
+
+            if (_input.LEFT)
+                Attack(3, pos);
+            
         }
 
         /// <summary>

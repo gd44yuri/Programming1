@@ -61,6 +61,7 @@
     <Compile Include="Sword.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TitleScreen.cs" />
+    <Compile Include="UI.cs" />
     <Compile Include="Vector3.cs" />
   </ItemGroup>
   <ItemGroup>

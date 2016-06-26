@@ -15,7 +15,7 @@ namespace Programming_Assignment_3
         Renderer _renderer;
         public static InputListener _input;
         public Player _player;
-        float rTime; 
+        public UI _ui;
 
         public Level _level;
 
@@ -32,20 +32,27 @@ namespace Programming_Assignment_3
             _player = new Player(_input, this);
             _player.pos = new Vector3(6, 4);
 
+            _ui = new UI(_player, this);
+
             LoadLevel();
 
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
             AddEnemy(new Soldier(new Vector3(12, 15), this, 3));
+            AddEnemy(new Soldier(new Vector3(13, 15), this, 3));
+            AddEnemy(new Soldier(new Vector3(14, 15), this, 3));
             
             //GetDeltaTime();
             while(isRunning){
 
                 GetDeltaTime();
+
                 _input.Update();
+               
+               
                 Update();
+
                 _renderer.Render();
-                rTime = 0;
 
                 System.Threading.Thread.Sleep(50);
             }
@@ -90,11 +97,14 @@ namespace Programming_Assignment_3
             {
                 e.Update();
             }
+
+            _ui.Update();
         }
 
         public void Render(Renderer r)
         {
             _level.Render(r);
+
 
             _player.Render(r);
 
@@ -111,6 +121,8 @@ namespace Programming_Assignment_3
             {
                 e.Render(r);
             }
+
+            _ui.Render(r);
         }
 
         public void AddProjectile(Projectile proj)

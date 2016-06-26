@@ -9,6 +9,8 @@ namespace Programming_Assignment_3
     class Tile : Entity
     {
 
+        public LivingEntity occupant;
+
         public Tile(Vector3 _pos)
         {
             pos = _pos;
@@ -22,20 +24,20 @@ namespace Programming_Assignment_3
             c = type;
         }
 
-        public Tile(Vector3 _pos, char type, bool solidity)
+        public Tile(Vector3 _pos, char type, byte solidity)
         {
             pos = _pos;
             c = type;
             solid = solidity;
         }
 
-        public Tile(char type, bool solidity)
+        public Tile(char type, byte solidity)
         {
             c = type;
             solid = solidity;
         }
 
-        public void set(char type, bool solidity)
+        public void set(char type, byte solidity)
         {
             c = type;
             solid = solidity;

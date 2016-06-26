@@ -30,6 +30,9 @@ namespace Programming_Assignment_3
             CreateSword();
         }
 
+        /// <summary>
+        /// This creates an instance of the sword, place it with the Soldier pointing at the right direction and gives it the soldier's attack power.
+        /// </summary>
         public void CreateSword() 
         {
             _sword = new Sword(this, direction, this.attackPower);
@@ -58,21 +61,40 @@ namespace Programming_Assignment_3
             }
         }
 
+        float timer;
+
+        /// <summary>
+        /// Method to control the time interval in which soldiers can move.
+        /// </summary>
         private void AllowMovement()
         {
-            Task.Factory.StartNew(() =>
+            if (timer >= 0.15f)
             {
+                // Task.Factory.StartNew(() =>
+                // {
                 canMove = true;
-                System.Threading.Thread.Sleep(800);
-                canMove = false;
 
-            });
+
+                // });
+
+                timer = 0;
+            }
+            else
+                timer += 0.05f;
+            //Task.Factory.StartNew(() =>
+            ///{
+                
+
+            //});
         }
 
+        /// <summary>
+        /// Method used to move the Soldier torwards the player
+        /// </summary>
         public void FollowPlayer()
         {
+            //Checks where the player is right now
             updatedDir = CheckMovement(_game._player.pos);
-            //If the player is to its left, move left = player.pos.x < this.pos.x
             switch (direction)
             {
                 case 0:
@@ -105,6 +127,11 @@ namespace Programming_Assignment_3
             _sword.CheckCollision(_game._player);
         }
 
+        /// <summary>
+        /// Method used to check the player's position relative to the soldier and adjust the soldier's direction accordingly
+        /// </summary>
+        /// <param name="playerPos"></param>
+        /// <returns></returns>
         public byte CheckMovement(Vector3 playerPos) 
         {
             if (playerPos.x < this.pos.x)

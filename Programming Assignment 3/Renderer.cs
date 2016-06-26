@@ -9,7 +9,7 @@ namespace Programming_Assignment_3
     class Renderer
     {
 
-        Vector3 RenderSize = new Vector3(55, 15);//Canvas size
+        Vector3 RenderSize = new Vector3(55, 25);//Canvas size
 
         public Vector3 camPos = new Vector3(0, 0);//camera position. currently disabled
 
@@ -79,6 +79,22 @@ namespace Programming_Assignment_3
                 for (int x = 0; x < size.x; x++)
                     if ((int)pos.x + x >= (int)camPos.x && (int)pos.y + y >= (int)camPos.y && (int)pos.x + x < (int)camPos.x + RenderSize.x && (int)pos.y + y < (int)camPos.y + RenderSize.y)
                     canvas[(int)pos.x - (int)camPos.x + x, (int)pos.y - (int)camPos.y + y] = c;
+        }
+
+        public void drawDotStill(Vector3 pos, char c)
+        {
+           // if ((int)pos.x >= (int)camPos.x && (int)pos.y >= (int)camPos.y && (int)pos.x < (int)camPos.x + RenderSize.x && (int)pos.y < (int)camPos.y + RenderSize.y)
+                canvas[(int)pos.x, (int)pos.y] = c;
+
+        }
+
+        //draws a box at a desired position by setting canvas chars in its range. A bit buggy
+        public void drawBoxStill(Vector3 pos, Vector3 size, char c)
+        {
+            for (int y = 0; y < size.y; y++)
+                for (int x = 0; x < size.x; x++)
+                  //  if ((int)pos.x + x >= (int)camPos.x && (int)pos.y + y >= (int)camPos.y && (int)pos.x + x < (int)camPos.x + RenderSize.x && (int)pos.y + y < (int)camPos.y + RenderSize.y)
+                        canvas[(int)pos.x + x, (int)pos.y + y] = c;
         }
 
         //Changes the camera position. currently commented out due to the renderer being buggy

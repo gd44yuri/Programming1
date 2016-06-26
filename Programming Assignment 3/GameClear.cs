@@ -8,6 +8,9 @@ namespace Programming_Assignment_3
 {
     class GameClear
     {
+        /// <summary>
+        /// Constructor for the Game Clear Screen
+        /// </summary>
         public GameClear()
         {
             Console.WriteLine("                                             █▒  ");

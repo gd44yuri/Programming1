@@ -37,8 +37,6 @@ namespace Programming_Assignment_3
         /// </summary>
         public override void Update()
         {
-            if (isUpdate)
-            {
                 switch (direction)
                 {
                     case 0:
@@ -57,11 +55,7 @@ namespace Programming_Assignment_3
                         break;
                 }
                 isUpdate = false;
-            }
-            else
-            {
-                isUpdate = true;
-            }
+            
         }
 
         /// <summary>

@@ -68,18 +68,26 @@ namespace Programming_Assignment_3
             r.drawDot(this.pos, 'A');
         }
 
+        float timer;
+
         /// <summary>
         /// Method to control the time interval in which archers attack.
         /// </summary>
         private void AllowAttack()
         {
-            Task.Factory.StartNew(() =>
+            if (timer >= 1)
             {
+                // Task.Factory.StartNew(() =>
+                // {
                 canAttack = true;
-                System.Threading.Thread.Sleep(2000);
-                canAttack = false;
+                
 
-            });
+                // });
+
+                timer = 0;
+            }
+            else
+                timer += 0.05f;
         }
     }
 }

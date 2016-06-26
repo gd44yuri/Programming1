@@ -83,7 +83,11 @@ namespace Programming_Assignment_3
 
                 for (int x = 0; x < s.Length; x++)
                 {
-                    drawDot(new Vector3(x, _y), (s[x] != ' '), (char)s[x]);
+                    byte sld = 0;
+                    if(s[x] != ' ')
+                        sld = 1;
+
+                    drawDot(new Vector3(x, _y), sld, (char)s[x]);
                 }
                 //Console.WriteLine(str);
                 _y++;
@@ -127,13 +131,13 @@ namespace Programming_Assignment_3
             }
         }
 
-        public void setTileAtPos(Vector3 _pos, bool solid, char c)
+        public void setTileAtPos(Vector3 _pos, byte solid, char c)
         {
             t[(int)_pos.x, (int)_pos.y].set(c, solid);
         }
 
         //!!only run level draw methods in the constructor!!
-        public void drawDot(Vector3 _pos, bool solid, char c)
+        public void drawDot(Vector3 _pos, byte solid, char c)
         {
             setTileAtPos(new Vector3((int)(_pos.x), (int)(_pos.y)), solid, c);
             //canvas[(int)pos.x - (int)camPos.x, (int)pos.y - (int)camPos.y] = c;
@@ -141,7 +145,7 @@ namespace Programming_Assignment_3
         }
 
         //draws a box at a desired position by setting canvas chars in its range. A bit buggy
-        public void drawBox(Vector3 _pos, Vector3 size, bool solid, char c)
+        public void drawBox(Vector3 _pos, Vector3 size, byte solid, char c)
         {
             for (int y = 0; y < size.y; y++)
                 for (int x = 0; x < size.x; x++)
