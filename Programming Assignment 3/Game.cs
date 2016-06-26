@@ -27,6 +27,8 @@ namespace Programming_Assignment_3
         {
             ShowTitle();
 
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(_input, this);
