@@ -9,7 +9,10 @@ namespace Programming_Assignment_3
     class Tile : Entity
     {
 
-        public LivingEntity occupant;
+
+        ~Tile() { }
+
+        public Tile(){ }
 
         public Tile(Vector3 _pos)
         {
@@ -46,6 +49,23 @@ namespace Programming_Assignment_3
         public void setPosition(Vector3 _pos)
         {
             pos = _pos;
+        }
+
+        //called when the player collides with this block
+        public virtual void OnInteract(Game _game, bool isPartOfChain)
+        {
+
+        }
+
+        //called when another
+        public virtual void OnInteractChain(Game _game, bool isPartOfChain)
+        {
+            List<Tile> _t = _game._level.getSurroundingTilesWithTag(pos, tag);
+
+            foreach (Tile ts in _t)
+            {
+                ts.OnInteract(_game, false);
+            }
         }
 
         public void Render(Renderer r)

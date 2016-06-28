@@ -14,9 +14,6 @@ namespace Programming_Assignment_3
         protected char upArrow = '↑';
         protected char downArrow = '↓';
 
-        //Boolean to control the update loop
-        bool isUpdate = false;
-
         /// <summary>
         /// Arrow Constructor.
         /// </summary>
@@ -30,6 +27,8 @@ namespace Programming_Assignment_3
             this.pos = pos;
             owner = own;
             power = pow;
+
+            tag = "hurt";
         }
 
         /// <summary>
@@ -54,14 +53,13 @@ namespace Programming_Assignment_3
                     default:
                         break;
                 }
-                isUpdate = false;
             
         }
 
         /// <summary>
         /// Method called when the arrow collides with something to destroy it.
         /// </summary>
-        public override void OnCollision()
+        public override void OnCollision(Tile tile)
         {
             isAlive = false;
            // _game.projectiles.Remove(this);

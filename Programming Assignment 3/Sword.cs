@@ -27,6 +27,8 @@ namespace Programming_Assignment_3
             _soldier = sd;
             direction = sdDir;
             power = pow;
+
+            tag = "hurt";
         }
 
         /// <summary>

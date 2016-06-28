@@ -19,6 +19,8 @@ namespace Programming_Assignment_3
 
         public Level _level;
 
+        public int keys = 1;
+
         public List<Projectile> projectiles = new List<Projectile>();
 
         public List<Enemy> enemies = new List<Enemy>();
@@ -29,8 +31,7 @@ namespace Programming_Assignment_3
 
             _input = new InputListener();
             _renderer = new Renderer(this);
-            _player = new Player(_input, this);
-            _player.pos = new Vector3(6, 4);
+            _player = new Player(new Vector3(6, 6), _input, this);
 
             _ui = new UI(_player, this);
 
@@ -39,8 +40,13 @@ namespace Programming_Assignment_3
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
             AddEnemy(new Soldier(new Vector3(12, 15), this, 3));
-            AddEnemy(new Soldier(new Vector3(13, 15), this, 3));
-            AddEnemy(new Soldier(new Vector3(14, 15), this, 3));
+
+            AddEnemy(new Boss(new Vector3(12, 15), this, 3));
+
+            AddEnemy(new Soldier(new Vector3(12, 20), this, 3));
+
+            AddProjectile(new Key(new Vector3(14, 15), "key"));
+            AddProjectile(new HealthPickup(new Vector3(14, 8), "health"));
             
             //GetDeltaTime();
             while(isRunning){
@@ -75,6 +81,7 @@ namespace Programming_Assignment_3
 
         public void Update()
         {
+
             _player.Update();
 
             CheckProjectiles();
@@ -152,6 +159,7 @@ namespace Programming_Assignment_3
 
         public void DestroyProjectile(Projectile p)
         {
+            p.OnDeath(this);
             p.isAlive = false;
             projectiles.Remove(p);
         }
@@ -168,9 +176,11 @@ namespace Programming_Assignment_3
                     {
                         if (p.pos.x == e.pos.x && p.pos.y == e.pos.y)
                         {
-                            
-                            e.TakeDamage(_player.attackPower);
-                            DestroyProjectile(p);
+                            if (p.tag.Contains("hurt"))
+                            {
+                                e.TakeDamage(_player.attackPower);
+                                DestroyProjectile(p);
+                            }
                         }
                     }
                 }
@@ -181,6 +191,20 @@ namespace Programming_Assignment_3
                         _player.TakeDamage(p.power);
                         DestroyProjectile(p);
                         Debug.WriteLine("Health: " + _player.HP);
+                    }
+                }
+                else if (p.tag.Contains("key"))
+                {
+                    if (p.pos.x == _player.pos.x && p.pos.y == _player.pos.y)
+                    {
+                        DestroyProjectile(p);
+                    }
+                }
+                else if (p.tag.Contains("health"))
+                {
+                    if (p.pos.x == _player.pos.x && p.pos.y == _player.pos.y)
+                    {
+                        DestroyProjectile(p);
                     }
                 }
             }

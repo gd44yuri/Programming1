@@ -18,8 +18,9 @@ namespace Programming_Assignment_3
        // Vector3 playerPos = new Vector3(12, 10);
 
         //Player class constructor where we receive the input listener and the game class reference.
-        public Player(InputListener il, Game g)
+        public Player(Vector3 _pos, InputListener il, Game g)
         {
+            pos = _pos;
             _input = il;
             _game = g;
         }
@@ -111,6 +112,11 @@ namespace Programming_Assignment_3
         public override void OnDeath()
         {
             _game.GameOver();
+        }
+
+        public override void OnCollision(Tile tile)
+        {
+            tile.OnInteract(_game, false);
         }
     }
 }

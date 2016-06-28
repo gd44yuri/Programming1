@@ -21,6 +21,13 @@ namespace Programming_Assignment_3
             z = _z;
         }
 
+        public Vector3(float _x, float _y, float _z)
+        {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+
         public Vector3(Vector3 _pos)
         {
             x = _pos.x;

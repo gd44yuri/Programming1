@@ -67,8 +67,8 @@ namespace Programming_Assignment_3
 
         public void drawDot(Vector3 pos, char c)
         {
-            if ((int)pos.x >= (int)camPos.x && (int)pos.y >= (int)camPos.y && (int)pos.x < (int)camPos.x + RenderSize.x && (int)pos.y < (int)camPos.y + RenderSize.y)
-                canvas[(int)pos.x - (int)camPos.x, (int)pos.y - (int)camPos.y] = c;
+            if ((int)pos.x >= (int)camPos.x && (int)pos.y - (int)pos.z >= (int)camPos.y && (int)pos.x < (int)camPos.x + RenderSize.x && (int)pos.y - (int)pos.z < (int)camPos.y + RenderSize.y)
+                canvas[(int)pos.x - (int)camPos.x, (int)pos.y - (int)camPos.y - (int)pos.z] = c;
             
         }
 
@@ -77,14 +77,14 @@ namespace Programming_Assignment_3
         {
             for (int y = 0; y < size.y; y++)
                 for (int x = 0; x < size.x; x++)
-                    if ((int)pos.x + x >= (int)camPos.x && (int)pos.y + y >= (int)camPos.y && (int)pos.x + x < (int)camPos.x + RenderSize.x && (int)pos.y + y < (int)camPos.y + RenderSize.y)
-                    canvas[(int)pos.x - (int)camPos.x + x, (int)pos.y - (int)camPos.y + y] = c;
+                    if ((int)pos.x + x >= (int)camPos.x && (int)pos.y + y - (int)pos.z >= (int)camPos.y && (int)pos.x + x < (int)camPos.x + RenderSize.x && (int)pos.y + y - (int)pos.z < (int)camPos.y + RenderSize.y)
+                        canvas[(int)pos.x - (int)camPos.x + x, (int)pos.y - (int)camPos.y + y - (int)pos.z] = c;
         }
 
         public void drawDotStill(Vector3 pos, char c)
         {
            // if ((int)pos.x >= (int)camPos.x && (int)pos.y >= (int)camPos.y && (int)pos.x < (int)camPos.x + RenderSize.x && (int)pos.y < (int)camPos.y + RenderSize.y)
-                canvas[(int)pos.x, (int)pos.y] = c;
+            canvas[(int)pos.x, (int)pos.y - (int)pos.z] = c;
 
         }
 
@@ -94,7 +94,7 @@ namespace Programming_Assignment_3
             for (int y = 0; y < size.y; y++)
                 for (int x = 0; x < size.x; x++)
                   //  if ((int)pos.x + x >= (int)camPos.x && (int)pos.y + y >= (int)camPos.y && (int)pos.x + x < (int)camPos.x + RenderSize.x && (int)pos.y + y < (int)camPos.y + RenderSize.y)
-                        canvas[(int)pos.x + x, (int)pos.y + y] = c;
+                    canvas[(int)pos.x + x, (int)pos.y + y] = c;
         }
 
         //Changes the camera position. currently commented out due to the renderer being buggy

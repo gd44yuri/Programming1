@@ -92,12 +92,39 @@ namespace Programming_Assignment_3
                 //Console.WriteLine(str);
                 _y++;
             }
+            setTile(new Door(new Vector3(10, 10)));
+            setTile(new Door(new Vector3(11, 10)));
+            setTile(new Door(new Vector3(12, 10)));
+            setTile(new Door(new Vector3(13, 10)));
+
+
+            setTile(new Door(new Vector3(23, 18)));
+            setTile(new Door(new Vector3(24, 18)));
+            setTile(new Door(new Vector3(25, 18)));
+            setTile(new Door(new Vector3(26, 18)));
+            setTile(new Door(new Vector3(23, 19)));
+            setTile(new Door(new Vector3(24, 19)));
+            setTile(new Door(new Vector3(25, 19)));
+            setTile(new Door(new Vector3(26, 19)));
 
             
             //Console.Read();
 
 
 
+        }
+
+        //return method for
+        public Tile getTileAtPos(Vector3 _pos)
+        {
+            return t[(int)_pos.x, (int)_pos.y];
+        }
+
+        //return method for
+        public void setTile(Tile _t)
+        {
+            t[(int)_t.pos.x, (int)_t.pos.y] = _t;
+            GC.Collect();
         }
 
         public void saveLevel()
@@ -129,6 +156,23 @@ namespace Programming_Assignment_3
                     t[x, y].Render(r);
                 }
             }
+        }
+
+        public List<Tile> getSurroundingTilesWithTag(Vector3 pos, string str)
+        {
+            List<Tile> _t = new List<Tile>();
+
+            if (pos.x > 0 && t[(int)pos.x - 1, (int)pos.y].tag == str)
+                _t.Add(t[(int)pos.x-1, (int)pos.y]);
+            if (pos.x < sx - 1 && t[(int)pos.x + 1, (int)pos.y].tag == str)
+                _t.Add(t[(int)pos.x+1, (int)pos.y]);
+
+            if (pos.y > 0 && t[(int)pos.x, (int)pos.y - 1].tag == str)
+                _t.Add(t[(int)pos.x, (int)pos.y-1]);
+            if (pos.y < sy - 1 && t[(int)pos.x, (int)pos.y + 1].tag == str)
+                _t.Add(t[(int)pos.x, (int)pos.y+1]);
+
+            return _t;
         }
 
         public void setTileAtPos(Vector3 _pos, byte solid, char c)

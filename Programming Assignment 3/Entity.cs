@@ -24,6 +24,8 @@ namespace Programming_Assignment_3
         //Reference to the game class
         public Game _game;
 
+        public string tag = "";
+
         public Entity() { }
 
         public Entity(Game game) {
@@ -35,6 +37,12 @@ namespace Programming_Assignment_3
         public Entity(Vector3 _pos)
         {
             pos = _pos;
+        }
+
+        public Entity(Vector3 _pos, string _tag)
+        {
+            pos = _pos;
+            tag = _tag;
         }
 
        // public void Update()
@@ -58,7 +66,7 @@ namespace Programming_Assignment_3
 
                     pos.translate(_move);
                 else
-                    OnCollision();
+                    OnCollision(_game._level.t[(int)(pos.x + _move.x), (int)(pos.y + _move.y)]);
             }
 
         }
@@ -66,7 +74,7 @@ namespace Programming_Assignment_3
         /// <summary>
         /// Base Method for Collision Checking
         /// </summary>
-        public virtual void OnCollision()
+        public virtual void OnCollision(Tile tile)
         {
 
         }
