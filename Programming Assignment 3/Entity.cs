@@ -32,6 +32,7 @@ namespace Programming_Assignment_3
             _game = game;
         }
 
+        //destructor
          ~Entity() { }
 
         public Entity(Vector3 _pos)
@@ -44,16 +45,6 @@ namespace Programming_Assignment_3
             pos = _pos;
             tag = _tag;
         }
-
-       // public void Update()
-       // {
-
-       // }
-
-        //public void Render()
-       // {
-
-        //}
 
         //Move the Entity inside the level bounds if there's no wall where the Entity is going and checks for collision if there's a wall
         public void Move(Vector3 _move)

@@ -8,9 +8,10 @@ namespace Programming_Assignment_3
 {
     class Level
     {
-
+        //the size of the level
         public int sx, sy;
 
+        //the tile array
         public Tile[,] t;
 
         public Level(int _sx, int _sy)
@@ -20,6 +21,8 @@ namespace Programming_Assignment_3
 
             t = new Tile[sx, sy];
 
+
+            //creates the tile array
             for (int y = 0; y < sy; y++)
             {
                 for (int x = 0; x < sx; x++)
@@ -28,17 +31,14 @@ namespace Programming_Assignment_3
                 }
             }
             
-            //make level
-            //drawBox(new Vector3(5, 2), new Vector3(15, 11), true, 'x');
-            //drawBox(new Vector3(6, 3), new Vector3(13, 9), false, ' ');
-            //drawDot(new Vector3(5, 5), false, ' ');
 
-            //saveLevel();
+            //saveLevel(); << with this you can save a drawn level
 
             load();
 
         }
 
+        //creates a new blank level
         public void setLevel(int _sx, int _sy)
         {
             sx = _sx;
@@ -55,6 +55,7 @@ namespace Programming_Assignment_3
             }
         }
 
+        //loads the level from a text file
         public void load()
         {
             
@@ -127,6 +128,7 @@ namespace Programming_Assignment_3
             GC.Collect();
         }
 
+        //save the level. currently unused(was going to make a level editor.)
         public void saveLevel()
         {
             List<string> strs = new List<string>();
@@ -147,6 +149,7 @@ namespace Programming_Assignment_3
             fio.Write("Level_test", strs);
         }
 
+        //render each tile in the array
         public void Render(Renderer r)
         {
             for (int y = 0; y < sy; y++)
@@ -158,6 +161,7 @@ namespace Programming_Assignment_3
             }
         }
 
+        //this method finds all tiles arround a position with a certain tag
         public List<Tile> getSurroundingTilesWithTag(Vector3 pos, string str)
         {
             List<Tile> _t = new List<Tile>();
@@ -175,6 +179,7 @@ namespace Programming_Assignment_3
             return _t;
         }
 
+        //sets a certain tile at a position
         public void setTileAtPos(Vector3 _pos, byte solid, char c)
         {
             t[(int)_pos.x, (int)_pos.y].set(c, solid);

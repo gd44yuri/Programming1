@@ -8,7 +8,8 @@ namespace Programming_Assignment_3
 {
     class Boss : Enemy
     {
-        byte updatedDir = 0;
+
+
         bool canMove = true;
 
         public Boss(Vector3 pos, Game g, byte newDir)
@@ -42,11 +43,7 @@ namespace Programming_Assignment_3
         {
             if (state == 0) { 
                 AllowMovement();
-                if (canMove)
-                {
-                    FollowPlayer();
-                    canMove = false;
-                }
+                FollowPlayer();
                 CheckCollision();
 
                 zVel += jump;
@@ -96,7 +93,6 @@ namespace Programming_Assignment_3
         public void FollowPlayer()
         {
             //Checks where the player is right now
-            updatedDir = CheckMovement(_game._player.pos);
             switch (direction)
             {
                 case 0:

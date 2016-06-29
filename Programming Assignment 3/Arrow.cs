@@ -36,24 +36,23 @@ namespace Programming_Assignment_3
         /// </summary>
         public override void Update()
         {
-                switch (direction)
-                {
-                    case 0:
-                        Move(new Vector3 (0, -1));
-                        break;
-                    case 1:
-                        Move(new Vector3(1, 0));
-                        break;
-                    case 2:
-                        Move(new Vector3(0, 1));
-                        break;
-                    case 3:
-                        Move(new Vector3(-1, 0));
-                        break;
-                    default:
-                        break;
-                }
-            
+            switch (direction)
+            {
+                case 0:
+                    Move(new Vector3(0, -1));
+                    break;
+                case 1:
+                    Move(new Vector3(1, 0));
+                    break;
+                case 2:
+                    Move(new Vector3(0, 1));
+                    break;
+                case 3:
+                    Move(new Vector3(-1, 0));
+                    break;
+                default:
+                    break;
+            }  
         }
 
         /// <summary>

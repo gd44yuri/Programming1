@@ -8,7 +8,7 @@ namespace Programming_Assignment_3
 {
     class Key : Projectile
     {
-
+        //this is a projectile that gives the player a key when touched
         public Key(Vector3 _pos, string _tag)
         {
             pos = _pos;

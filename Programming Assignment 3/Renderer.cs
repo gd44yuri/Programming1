@@ -11,7 +11,7 @@ namespace Programming_Assignment_3
 
         Vector3 RenderSize = new Vector3(55, 25);//Canvas size
 
-        public Vector3 camPos = new Vector3(0, 0);//camera position. currently disabled
+        public Vector3 camPos = new Vector3(0, 0);//camera position.
 
         Game game;//reference back to the game class
 
@@ -65,6 +65,7 @@ namespace Programming_Assignment_3
         }
 
 
+        //draws a char at a position relative to the camera
         public void drawDot(Vector3 pos, char c)
         {
             if ((int)pos.x >= (int)camPos.x && (int)pos.y - (int)pos.z >= (int)camPos.y && (int)pos.x < (int)camPos.x + RenderSize.x && (int)pos.y - (int)pos.z < (int)camPos.y + RenderSize.y)
@@ -72,7 +73,7 @@ namespace Programming_Assignment_3
             
         }
 
-        //draws a box at a desired position by setting canvas chars in its range. A bit buggy
+        //draws a box at a position relative to the camera
         public void drawBox(Vector3 pos, Vector3 size, char c)
         {
             for (int y = 0; y < size.y; y++)
@@ -81,23 +82,22 @@ namespace Programming_Assignment_3
                         canvas[(int)pos.x - (int)camPos.x + x, (int)pos.y - (int)camPos.y + y - (int)pos.z] = c;
         }
 
+        //draws a char at a position relative to the canvas
         public void drawDotStill(Vector3 pos, char c)
         {
-           // if ((int)pos.x >= (int)camPos.x && (int)pos.y >= (int)camPos.y && (int)pos.x < (int)camPos.x + RenderSize.x && (int)pos.y < (int)camPos.y + RenderSize.y)
             canvas[(int)pos.x, (int)pos.y - (int)pos.z] = c;
 
         }
 
-        //draws a box at a desired position by setting canvas chars in its range. A bit buggy
+        //draws a box at a position relative to the canvas
         public void drawBoxStill(Vector3 pos, Vector3 size, char c)
         {
             for (int y = 0; y < size.y; y++)
                 for (int x = 0; x < size.x; x++)
-                  //  if ((int)pos.x + x >= (int)camPos.x && (int)pos.y + y >= (int)camPos.y && (int)pos.x + x < (int)camPos.x + RenderSize.x && (int)pos.y + y < (int)camPos.y + RenderSize.y)
-                    canvas[(int)pos.x + x, (int)pos.y + y] = c;
+                  canvas[(int)pos.x + x, (int)pos.y + y] = c;
         }
 
-        //Changes the camera position. currently commented out due to the renderer being buggy
+        //Changes the camera position.
         public void setCameraPosition(Vector3 pos)
         {
             camPos = new Vector3((int)pos.x - (int)(RenderSize.x * .5f), (int)pos.y - (int)(RenderSize.y * .5f));

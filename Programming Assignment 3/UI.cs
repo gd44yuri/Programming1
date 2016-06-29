@@ -8,9 +8,9 @@ namespace Programming_Assignment_3
 {
     class UI
     {
-
-        public LivingEntity _plr;
-        public Game _game;
+        
+        public LivingEntity _plr;//reference to the player
+        public Game _game;//reference to the game
 
         public UI(LivingEntity e, Game g)
         {
@@ -25,7 +25,9 @@ namespace Programming_Assignment_3
 
         public void Render(Renderer r)
         {
-            r.drawBoxStill(new Vector3(1, 1), new Vector3(_plr.HP, 1), '♥');
+            r.drawBoxStill(new Vector3(1, 1), new Vector3(_plr.HP, 1), '♥');//draws hearts in a line depending on the players health
+
+            //the rest of the lines here display the amount of keys the player has
             r.drawBoxStill(new Vector3(1, 3), new Vector3(1, 1), 'k');
             r.drawBoxStill(new Vector3(2, 3), new Vector3(1, 1), 'e');
             r.drawBoxStill(new Vector3(3, 3), new Vector3(1, 1), 'y');

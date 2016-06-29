@@ -15,11 +15,6 @@ namespace Programming_Assignment_3
         //Attack power for the projectile
         public int power;
 
-        public virtual void OnDeath(Game _game)
-        {
-
-        }
-
         /// <summary>
         /// Base update method for Projectiles.
         /// </summary>
@@ -32,6 +27,12 @@ namespace Programming_Assignment_3
         /// </summary>
         /// <param name="r">Render reference</param>
         public virtual void Render(Renderer r)
+        {
+
+        }
+
+        //called when the projectile dies
+        public virtual void OnDeath(Game _game)
         {
 
         }

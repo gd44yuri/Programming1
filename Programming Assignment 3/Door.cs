@@ -20,31 +20,28 @@ namespace Programming_Assignment_3
         //called when the player collides with this block
         public override void OnInteract(Game _game, bool isPartOfChain)
         {
+            //when this interact is called 
             if (_game.keys > 0 || isPartOfChain)
             {
+                //if the door is not a chained
                 if (!isPartOfChain)
-                    _game.keys--;
+                    _game.keys--;//remove keys
 
+                //set this time to a blank tile
                 _game._level.setTile(new Tile(pos));
             
+                //start chain
                 OnInteractChain(_game, isPartOfChain);
             }
         }
 
-        //called when another
+        //called when an ajacent tile with the same tag is touched
         public override void OnInteractChain(Game _game,  bool isPartOfChain)
         {
             List<Tile> _t = _game._level.getSurroundingTilesWithTag(pos, tag);
 
             foreach (Tile ts in _t)
-            {
                 ts.OnInteract(_game, true);
-            }
-
-            if(_t.ToArray().Length == 0)
-            {
-               
-            }
         }
     }
 }

@@ -77,13 +77,7 @@ namespace Programming_Assignment_3
         {
             if (timer >= 1)
             {
-                // Task.Factory.StartNew(() =>
-                // {
                 canAttack = true;
-                
-
-                // });
-
                 timer = 0;
             }
             else

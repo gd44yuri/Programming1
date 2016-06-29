@@ -8,6 +8,9 @@ namespace Programming_Assignment_3
 {
     class Vector3
     {
+
+        //this class is the coordinate variable for all game objects.
+
         public float x, y, z;
 
         public Vector3(){
@@ -52,14 +55,6 @@ namespace Programming_Assignment_3
             x += _pos.x;
             y += _pos.y;
             z += _pos.z;
-        }
-
-        public static float getDistance3D(Vector3 posA, Vector3 posB){
-            float amt = 0;
-
-            
-
-            return amt;
         }
     }
 }

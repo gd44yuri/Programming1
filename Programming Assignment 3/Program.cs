@@ -8,6 +8,7 @@ namespace Programming_Assignment_3
 {
     class Program
     {
+        //the main method creates the game
         static void Main(string[] args)
         {
             new Game();

@@ -9,21 +9,21 @@ namespace Programming_Assignment_3
 {
     class Game
     {
-        public bool isRunning = false;
-        public bool allEnemiesDead = false;
+        public bool isRunning = false;//the main thread loop condition
+        public bool allEnemiesDead = false;//the end
 
-        Renderer _renderer;
-        public static InputListener _input;
-        public Player _player;
-        public UI _ui;
+        Renderer _renderer;//the game renderer
+        public static InputListener _input;//the games input
+        public Player _player;//player entity
+        public UI _ui;//game ui
 
         public Level _level;
 
-        public int keys = 1;
+        public int keys = 0; //amount of keys
 
-        public List<Projectile> projectiles = new List<Projectile>();
+        public List<Projectile> projectiles = new List<Projectile>();//projectile list
 
-        public List<Enemy> enemies = new List<Enemy>();
+        public List<Enemy> enemies = new List<Enemy>();//Enemy List
 
         public Game()
         {
@@ -31,75 +31,74 @@ namespace Programming_Assignment_3
 
             Console.OutputEncoding = System.Text.Encoding.Unicode;
 
+            //instantiate the engine variables
             _input = new InputListener();
             _renderer = new Renderer(this);
             _player = new Player(new Vector3(6, 6), _input, this);
 
             _ui = new UI(_player, this);
 
+            //create the level
             LoadLevel();
 
+            //create the games entities
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
             AddEnemy(new Soldier(new Vector3(12, 15), this, 3));
-
             AddEnemy(new Boss(new Vector3(12, 15), this, 3));
-
             AddEnemy(new Soldier(new Vector3(12, 20), this, 3));
 
+            //create pickups
             AddProjectile(new Key(new Vector3(14, 15), "key"));
             AddProjectile(new HealthPickup(new Vector3(14, 8), "health"));
             
-            //GetDeltaTime();
+            //the games running loop
             while(isRunning){
 
-                GetDeltaTime();
-
-                _input.Update();
+                _input.Update(); //input update
                
-               
-                Update();
+                Update(); //game update
 
-                _renderer.Render();
+                _renderer.Render();//render update
 
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(50);//make the program sleep for 50 milliseconds
             }
         }
 
+        //create title screen
+        public void ShowTitle()
+        {
+            Console.Clear();
+            new TitleScreen(this);
+        }
+
+        //creates the level
         public void LoadLevel()
         {
             _level = new Level(32, 32);
         }
 
-        static long lastTime = 0;
-        static double GetDeltaTime()
-        {
-            long now = DateTime.Now.Ticks;
-            double dT = (now - lastTime);
-            lastTime = now;
-            return dT;
-        }
-
-
+        //the update function
         public void Update()
         {
 
-            _player.Update();
+            CheckProjectiles();//check the projectiles for dead projectiles.
 
-            CheckProjectiles();
+            CheckEnemies();//check the enemies for dead entities
 
-            CheckEnemies();
-
-            CheckProjectilesForCollision();
+            CheckProjectilesForCollision();//check for arrow collision with entities
 
             UpdateEnemyDireciton();
 
             CheckClearConditions();
 
+            //update all the game objects
+            _player.Update();
+
             foreach (Projectile p in projectiles.Reverse<Projectile>())
             {
                 if(p!=null)
-                p.Update();
+                    p.Update();
             }
 
             foreach (Enemy e in enemies)
@@ -112,8 +111,8 @@ namespace Programming_Assignment_3
 
         public void Render(Renderer r)
         {
+            //render game objects
             _level.Render(r);
-
 
             _player.Render(r);
 
@@ -134,12 +133,14 @@ namespace Programming_Assignment_3
             _ui.Render(r);
         }
 
+        //create and add projectile to the projectile array
         public void AddProjectile(Projectile proj)
         {
             projectiles.Add(proj);
             proj._game = this;
         }
 
+        //checks the projectiles and removes them from the list if they're dead
         public void CheckProjectiles()
         {
             List<Projectile> np = new List<Projectile>();
@@ -156,9 +157,10 @@ namespace Programming_Assignment_3
 
             projectiles = np;
 
-            GC.Collect();
+            GC.Collect();//remove the dead projectiles from memory
         }
 
+        //destroys projectiles
         public void DestroyProjectile(Projectile p)
         {
             p.OnDeath(this);
@@ -166,6 +168,7 @@ namespace Programming_Assignment_3
             projectiles.Remove(p);
         }
 
+        //checks each projectiles position in relation to each entity
         public void CheckProjectilesForCollision()
         {
             List<Projectile> np = new List<Projectile>();
@@ -195,28 +198,22 @@ namespace Programming_Assignment_3
                         Debug.WriteLine("Health: " + _player.HP);
                     }
                 }
-                else if (p.tag.Contains("key"))
+                else if (p.tag.Contains("key") || p.tag.Contains("health"))
                 {
                     if (p.pos.x == _player.pos.x && p.pos.y == _player.pos.y)
-                    {
                         DestroyProjectile(p);
-                    }
-                }
-                else if (p.tag.Contains("health"))
-                {
-                    if (p.pos.x == _player.pos.x && p.pos.y == _player.pos.y)
-                    {
-                        DestroyProjectile(p);
-                    }
+                    
                 }
             }
         }
 
+        //adds a new enemy to the enemies array
         public void AddEnemy(Enemy en)
         {
             enemies.Add(en);
         }
 
+        //checks the enemy array and deletes the ones that are dead.
         public void CheckEnemies()
         {
             List<Enemy> ne = new List<Enemy>();
@@ -231,8 +228,11 @@ namespace Programming_Assignment_3
                 }
             }
             enemies = ne;
+
+            GC.Collect();
         }
 
+        //destroys an enemy
         public void DestroyEnemy(Enemy e)
         {
             e.isAlive = false;
@@ -240,11 +240,7 @@ namespace Programming_Assignment_3
             enemies.Remove(e);
         }
 
-        public void ShowTitle() {
-            Console.Clear();
-            TitleScreen ts = new TitleScreen(this);
-        }
-
+        //called when the player dies
         public void GameOver() 
         {
             Console.Clear();
@@ -252,6 +248,7 @@ namespace Programming_Assignment_3
             GameOver go = new GameOver();
         }
 
+        //set the enemies direction in relation to the player
         public void UpdateEnemyDireciton()
         {
             foreach (Enemy e in enemies)
@@ -275,6 +272,7 @@ namespace Programming_Assignment_3
             }
         }
 
+        //checks if all of the enemies are dead, if it is it ends the game.
         public void CheckClearConditions()
         {
             Debug.WriteLine(enemies.Count);

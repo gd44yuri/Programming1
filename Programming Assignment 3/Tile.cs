@@ -9,10 +9,10 @@ namespace Programming_Assignment_3
     class Tile : Entity
     {
 
+        public Tile() { }
 
+        //Destructor
         ~Tile() { }
-
-        public Tile(){ }
 
         public Tile(Vector3 _pos)
         {
@@ -57,7 +57,7 @@ namespace Programming_Assignment_3
 
         }
 
-        //called when another
+        //called when another tile of this tag calls the surroundingTiles function in the level class
         public virtual void OnInteractChain(Game _game, bool isPartOfChain)
         {
             List<Tile> _t = _game._level.getSurroundingTilesWithTag(pos, tag);
