@@ -28,6 +28,8 @@ namespace Programming_Assignment_3
         public Game()
         {
             ShowTitle();
+            Console.Clear();
+            new Instruction();
 
             Console.OutputEncoding = System.Text.Encoding.Unicode;
 
@@ -45,7 +47,7 @@ namespace Programming_Assignment_3
             AddEnemy(new Archer(new Vector3(15, 8), this, 1));
             AddEnemy(new Archer(new Vector3(15, 4), this, 3));
             AddEnemy(new Soldier(new Vector3(12, 15), this, 3));
-            AddEnemy(new Boss(new Vector3(12, 15), this, 3));
+            AddEnemy(new Boss(new Vector3(25, 25), this, 3));
             AddEnemy(new Soldier(new Vector3(12, 20), this, 3));
 
             //create pickups

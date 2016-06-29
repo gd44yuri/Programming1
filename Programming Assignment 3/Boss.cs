@@ -18,7 +18,7 @@ namespace Programming_Assignment_3
             //Defining the attack power for this type of enemy.
             this.attackPower = 4;
 
-            HP = 100;
+            HP = 60;
 
             _game = g;
 
@@ -78,7 +78,7 @@ namespace Programming_Assignment_3
         /// </summary>
         private void AllowMovement()
         {
-            if (Movetimer >= 0.15f)
+            if (Movetimer >= 0.1f)
             {
                 canMove = true;
                 Movetimer = 0;
@@ -93,22 +93,25 @@ namespace Programming_Assignment_3
         public void FollowPlayer()
         {
             //Checks where the player is right now
-            switch (direction)
-            {
-                case 0:
-                    Move(new Vector3(0, -1));
-                    break;
-                case 1:
-                    Move(new Vector3(1, 0));
-                    break;
-                case 2:
-                    Move(new Vector3(0, 1));
-                    break;
-                case 3:
-                    Move(new Vector3(-1, 0));
-                    break;
-                default:
-                    break;
+            if (canMove) { 
+                switch (direction)
+                {
+                    case 0:
+                        Move(new Vector3(0, -1));
+                        break;
+                    case 1:
+                        Move(new Vector3(1, 0));
+                        break;
+                    case 2:
+                        Move(new Vector3(0, 1));
+                        break;
+                    case 3:
+                        Move(new Vector3(-1, 0));
+                        break;
+                    default:
+                        break;
+                }
+                canMove = false;
             }
         }
 
